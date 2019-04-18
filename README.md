@@ -4,10 +4,8 @@
 
 |Users|Tasks|Labels|
 |:--|--:|:--:|
-|id|id,user_id,label_id|id,task_id|
-|name,string|title,string|pendding,string|
-|email,string|deadline,date|wait,string|
-|passwprd_digest,srting|priority,integer|asap,string|
-||progress,string|late,string|
-|||well,string|
-|||event,string|
+|id|user_id,label_id|task_id|
+|name,string|title,string|title,string|
+|email,string|deadline,date||
+|passwprd_digest,srting|priority,integer||
+||progress,string||
