@@ -1,7 +1,7 @@
 # README
 
 # Table 
-####下記内容で作成
+#### 下記内容でテーブル作成
 
 |Users|Tasks|Labels|
 |:--|--:|:--:|
