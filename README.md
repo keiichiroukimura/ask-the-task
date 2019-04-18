@@ -9,5 +9,5 @@
 |email,string|deadline,date|wait,string|
 |passwprd_digest,srting|priority,integer|asap,string|
 ||progress,string|late,string|
-||||well,string|
-||||event,string|
+|||well,string|
+|||event,string|
