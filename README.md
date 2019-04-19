@@ -15,6 +15,7 @@
 |:--|:--|:--|
 |user_id,label_id|||
 |title|string|タスク名|
+|content|text|内容|
 |deadline|date|締切日|
 |priority|integer|優先順位|
 |status|string|未着手、着手、完了|
