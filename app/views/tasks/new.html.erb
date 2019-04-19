@@ -1,0 +1,26 @@
+<div class = "task_index">
+  <%= form_with(model: Task.new) %>
+    <%= form_with(model: Task.new) do |form| %>
+      <div class="task_title">
+        <%= form.label :タスク名 %>
+        <br>
+        <%= form.text_field :title,rows:5, class: 'form-control'%>
+      </div>
+      <div class="task_title">
+        <%= form.label :内容 %>
+        <br>
+        <%= form.text_field :content, class: 'form-control'%>
+      </div>
+      <div class="task_title">
+      <%= form.label :締切期限 %>
+      <br>
+      <%= form.text_field :content, class: 'form-control' %>
+    </div>
+      <div class="task_title">
+        <%= form.label :優先順位 %>
+        <br>
+        <%= form.text_field :integer, class: 'form-control' %>
+      </div>
+      <%= form.submit %>
+  <% end %>
+</div>
