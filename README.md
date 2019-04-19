@@ -24,3 +24,8 @@
 |:--|:--|:--|
 |task_id|||
 |title|string|ラベル名|
+
+|Attentions|
+|:--|
+|task_id,label_id|
+
