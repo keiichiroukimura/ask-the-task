@@ -1,0 +1,18 @@
+<h1>タスク一覧</h1>
+<p id = "notice"><%= notice %></p>
+<% @tasks.each do |task| %>
+  <br>
+  <%= "優先順位:" %>
+  <%= task.priority %>
+  <%= "タスク:" %>
+  <%= task.title %>
+  <%= "期限:"%>
+  <%= task.deadline %>
+  <%= "ステータス:" %>
+  <%= task.status%>
+  <%= link_to '詳細', task_path(task.id) %>
+  <%= link_to '編集', edit_task_path(task.id) %>
+  <%= link_to '削除', task_path(task.id), method: :delete %>
+<% end %>
+  <br>
+  <%= link_to 'タスクを登録する', new_task_path %>
