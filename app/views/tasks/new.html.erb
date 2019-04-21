@@ -1,14 +1,14 @@
 <div class = "task_index">
-    <%= form_with(model: @task) do |form| %>
+    <%= form_with(model: @task, local: true) do |form| %>
       <div class="task_title">
         <%= form.label :タスク名 %>
         <br>
-        <%= form.text_field :title,rows:5, class: 'form-control'%>
+        <%= form.text_field :title,rows:5, class: 'form-control',id: 'new_title'%>
       </div>
       <div class="task_title">
         <%= form.label :内容 %>
         <br>
-        <%= form.text_field :content, class: 'form-control'%>
+        <%= form.text_field :content, class: 'form-control',id: 'new_content'%>
       </div>
       <div class="task_title">
       <%= form.label :締切期限 %>
