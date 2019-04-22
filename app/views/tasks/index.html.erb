@@ -4,7 +4,12 @@
   <br>
   <%= t('view.priority') %>
   <%= task.priority %>
+
   <%= t('view.title') %>
+
+
+
+
   <%= task.title %>
   <%= t('view.content') %>
   <%= task.content %>
@@ -12,9 +17,13 @@
   <%= task.deadline %>
   <%= t('view.status') %>
   <%= task.status%>
+
   <%= link_to t('view.show'), task_path(task.id) %>
   <%= link_to t('view.edit'), edit_task_path(task.id) %>
   <%= link_to t('view.destroy'), task_path(task.id), method: :delete %>
+
+  
+
 <% end %>
   <br>
   <%= link_to t('view.registration'), new_task_path %>
