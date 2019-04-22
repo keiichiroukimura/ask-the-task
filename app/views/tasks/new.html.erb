@@ -1,31 +1,31 @@
 <div class = "task_index">
     <%= form_with(model: @task, local: true) do |form| %>
       <div class="task_title">
-        <%= form.label :タスク名 %>
+        <%= form.label :title %>
         <br>
         <%= form.text_field :title,rows:5, class: 'form-control',id: 'new_title'%>
       </div>
       <div class="task_title">
-        <%= form.label :内容 %>
+        <%= form.label :content %>
         <br>
         <%= form.text_area :content, class: 'form-control',id: 'new_content'%>
       </div>
       <div class="task_title">
-      <%= form.label :締切期限 %>
+      <%= form.label :deadline %>
       <br>
       <%= form.text_field :deadline, class: 'form-control' %>
       </div>
       <div class="task_title">
-        <%= form.label :優先順位 %>
+        <%= form.label :priority %>
         <br>
         <%= form.text_field :priority, class: 'form-control' %>
       </div>
       <div class="task_title">
-        <%= form.label :ステータス %>
+        <%= form.label :status %>
         <br>
         <%= form.text_field :status, class: 'form-control' %>
       </div>
       <%= form.submit %>
     <% end %>
-  <%= link_to 'Back', tasks_path %>
+  <%= link_to t('view.back'), tasks_path %>
 </div>
