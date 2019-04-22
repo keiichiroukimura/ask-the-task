@@ -11,7 +11,7 @@
         <%= form.text_field :content, class: 'form-control'%>
       </div>
       <div class="task_title">
-      <%= form.label :deaedline %>
+      <%= form.label :deadline %>
       <br>
       <%= form.text_field :deadline, class: 'form-control' %>
     </div>
@@ -27,5 +27,5 @@
       </div>
       <%= form.submit %>
   <% end %>
-  <%= link_to 'Back', tasks_path %>
+  <%= link_to t('view.back'), tasks_path %>
 </div>
