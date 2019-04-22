@@ -1,6 +1,9 @@
 <h1>タスク内容</h1>
-
-<p>タスク名:<%= @task.title %></p>
-<p>内容:<%= @task.content %></p>
+<p id = "notice"><%= notice %></p>
+<p>タスク名: <%= @task.title %></p>
+<p>内容: <%= @task.content %></p>
+<p>締切: <%= @task.deadline %></p>
+<p>優先順位: <%= @task.priority %></p>
+<p>ステータス: <%= @task.status %></p>
 <%= link_to '編集', edit_task_path(@task) %>
   <%= link_to 'Back', tasks_path %>

@@ -4,14 +4,16 @@
   <br>
   <%= "優先順位:" %>
   <%= task.priority %>
-  <%= "タスク:" %>
+  <%= "タスク名:" %>
   <%= task.title %>
+  <%= "内容:" %>
+  <%= task.content %>
   <%= "期限:"%>
   <%= task.deadline %>
   <%= "ステータス:" %>
   <%= task.status%>
-  <%= link_to '詳細', task_path(task.id) %>
-  <%= link_to '編集', edit_task_path(task.id) %>
+  <%= link_to '詳細',task_path(task.id) %>
+  <%= link_to '編集', edit_task_path(task.id)%>
   <%= link_to '削除', task_path(task.id), method: :delete %>
 <% end %>
   <br>
