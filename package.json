@@ -1,5 +1,8 @@
 {
   "name": "ask_the_task",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.4.0"
+  }
 }

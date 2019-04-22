@@ -1,20 +1,31 @@
 <h1>タスク一覧</h1>
 <p id = "notice"><%= notice %></p>
-<% @tasks.each do |task| %>
-  <br>
-  <%= "優先順位:" %>
-  <%= task.priority %>
-  <%= "タスク名:" %>
-  <%= task.title %>
-  <%= "内容:" %>
-  <%= task.content %>
-  <%= "期限:"%>
-  <%= task.deadline %>
-  <%= "ステータス:" %>
-  <%= task.status%>
-  <%= link_to '詳細',task_path(task.id) %>
-  <%= link_to '編集', edit_task_path(task.id)%>
-  <%= link_to '削除', task_path(task.id), method: :delete %>
-<% end %>
+<table class="table table-hover" style = "width: 1000px;">
+  <tr>
+    <th><%= "登録日時" %></th>
+    <th><%= "優先順位" %></th>
+    <th><%= "タスク名" %></th>
+    <th><%= "内容" %></th>
+    <th><%= "期限" %></th>
+    <th><%= "ステータス" %></th>
+  <tr>
+  
+  
+    <% @tasks.each do |task| %>
+    <br>
+  <tr>
+    <th><%= task.created_at %></th>
+    <th><%= task.priority %></th> 
+    <th><%= task.title %></th>
+    <th><%= task.content %></th>
+    <th><%= task.deadline %></th>
+    <th><%= task.status %></th>
+    <th><%= link_to '詳細',task_path(task.id) %></th>
+    <th><%= link_to '編集', edit_task_path(task.id)%></th>
+    <th><%= link_to '削除', task_path(task.id), method: :delete %></th>
+  </tr>
+    <% end %>
+  
+</table>
   <br>
   <%= link_to 'タスクを登録する', new_task_path %>

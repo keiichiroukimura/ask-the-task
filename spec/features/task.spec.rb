@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
-  
+  background do
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+  end
   scenario "タスク一覧のテスト" do
     Task.create!(title: 'test_task_01', content: 'testtesttest', )
     Task.create!(title: 'test_task_02', content: 'samplesample')
@@ -35,5 +38,11 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content '4月30日'
     expect(page).to have_content '1'
     expect(page).to have_content 'a'
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    # backgroundに必要なタスクデータの作成処理が書かれているので、ここで書く必要がない
+
+    # タスクが作成日時の降順に並んでいるかのテスト
   end
 end
