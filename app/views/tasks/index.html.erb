@@ -2,13 +2,15 @@
 <p id = "notice"><%= notice %></p>
 <% @tasks.each do |task| %>
   <br>
-  <%= "優先順位:" %>
+  <%= t '.priority' %>
   <%= task.priority %>
-  <%= "タスク:" %>
+  <%= t '.title' %>
   <%= task.title %>
-  <%= "期限:"%>
+  <%= t '.content' %>
+  <%= task.content %>
+  <%= t '.deadline' %>
   <%= task.deadline %>
-  <%= "ステータス:" %>
+  <%= t '.status' %>
   <%= task.status%>
   <%= link_to '詳細', task_path(task.id) %>
   <%= link_to '編集', edit_task_path(task.id) %>
