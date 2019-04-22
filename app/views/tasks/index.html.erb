@@ -2,19 +2,19 @@
 <p id = "notice"><%= notice %></p>
 <% @tasks.each do |task| %>
   <br>
-  <%= t '.priority' %>
+  <%= t('view.priority') %>
   <%= task.priority %>
-  <%= t '.title' %>
+  <%= t('view.title') %>
   <%= task.title %>
-  <%= t '.content' %>
+  <%= t('view.content') %>
   <%= task.content %>
-  <%= t '.deadline' %>
+  <%= t('view.deadline') %>
   <%= task.deadline %>
-  <%= t '.status' %>
+  <%= t('view.status') %>
   <%= task.status%>
-  <%= link_to '詳細', task_path(task.id) %>
-  <%= link_to '編集', edit_task_path(task.id) %>
-  <%= link_to '削除', task_path(task.id), method: :delete %>
+  <%= link_to t('view.show'), task_path(task.id) %>
+  <%= link_to t('view.edit'), edit_task_path(task.id) %>
+  <%= link_to t('view.destroy'), task_path(task.id), method: :delete %>
 <% end %>
   <br>
-  <%= link_to 'タスクを登録する', new_task_path %>
+  <%= link_to t('view.registration'), new_task_path %>

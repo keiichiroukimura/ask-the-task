@@ -1,23 +1,4 @@
 ja:
-  tasks:
-    index:
-      title: 'タスク名'
-      content: '内容'
-      deadline: '締切期限'
-      priority: '優先度'
-      status: 'ステータス'
-    show:
-      title: 'タスク名'
-      content: '内容'
-      deadline: '締切期限'
-      priority: '優先度'
-      status: 'ステータス'
-    edit:
-      title: 'タスク名'
-      content: '内容'
-      deadline: '締切期限'
-      priority: '優先度'
-      status: 'ステータス'
   activerecord:
     models:
       task: 'タスク'
