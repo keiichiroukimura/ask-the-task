@@ -10,3 +10,4 @@ ja:
     destroy: '削除'
     show: '詳細'
     registration: 'タスクを登録する'
+    date: '登録日時'

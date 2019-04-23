@@ -1,10 +1,11 @@
 <h1>タスク内容</h1>
-
-
 <p><%= t('view.title') %>:<%= @task.title %></p>
 <p><%= t('view.content') %>:<%= @task.content %></p>
+<p><%= t('view.deadline') %>:<%= @task.deadline %></p>
+<p><%= t('view.priority') %>:<%= @task.priority %></p>
+<p><%= t('view.status') %>:<%= @task.status %></p>
 <%= link_to t('view.edit'), edit_task_path(@task) %>
-  <%= link_to t('view.back'), tasks_path %>
+<%= link_to t('view.back'), tasks_path %>
 
 
 
