@@ -30,3 +30,13 @@
 |:--|
 |task_id,label_id|
 
+#### herokuデプロイ手順
+・$ heroku create コマンドでherokuに新しいアプリケーションを作成する。<br>
+・$ git push heroku master コマンドでherokuにデプロイができる<br>
+・DBは自動で作成されるがマイグレーションファイルは$heroku run rails db:migrateコマンドで手動で実行する。<br>
+・$ rails assets:precompile RAILS_ENV=production コマンドにより事前にapp/assets以下をコンパイルしておく必要があ　  る。<br>
+
+#### バージョン
+Rails 5.2.3<br>
+Rspec 3.8
+
