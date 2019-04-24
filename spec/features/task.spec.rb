@@ -46,11 +46,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     # what: これは配列の順番を見るために作ったコード
     # how；　配列で取得するためにviewからだったらall modelからならallやwhere
     # why: 順番を確かめるためには一つの変数で複数の値を順番通りもてる配列を使わなきゃいけないから
+    value = all("table tr")[1]
+    expect(value).to have_content 'test_task_02'
     # ts = Task.order(created_at: "DESC").map do |task|
-    #   task.title
+    # task.title
     # end
-    ts = Task.order(created_at: "DESC").pluck(:content)
-    expect(all(".task-item__content").map(&:text)).to eq ts
+    # ts = Task.order(created_at: "DESC").pluck(:content)
+    # expect(all(".task-item__content").map(&:text)).to eq ts
     # expect(all(".task-item__title").map(&:text)).to eq ts
   end
 end
