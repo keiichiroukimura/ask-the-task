@@ -43,11 +43,11 @@ RSpec.feature "タスク管理機能", type: :feature do
     # backgroundに必要なタスクデータの作成処理が書かれているので、ここで書く必要がない
     visit tasks_path
     # タスクが作成日時の降順に並んでいるかのテスト
-    # what: これは配列の順番を見るために作ったコード
-    # how；　配列で取得するためにviewからだったらall modelからならallやwhere
-    # why: 順番を確かめるためには一つの変数で複数の値を順番通りもてる配列を使わなきゃいけないから
     value = all("table tr")[1]
     expect(value).to have_content 'test_task_02'
+    # what: これは配列の順番を見るために作ったコード
+    # how； 配列で取得するためにviewからだったらall modelからならallやwhere
+    # why: 順番を確かめるためには一つの変数で複数の値を順番通りもてる配列を使わなきゃいけないから
     # ts = Task.order(created_at: "DESC").map do |task|
     # task.title
     # end
@@ -55,7 +55,12 @@ RSpec.feature "タスク管理機能", type: :feature do
     # expect(all(".task-item__content").map(&:text)).to eq ts
     # expect(all(".task-item__title").map(&:text)).to eq ts
   end
+  scenario "終了期限の降順に並び替えられたタスク一覧ページが出現するかのテスト" do
+    visit tasks_path
+    fill_in 'DateTime', with: 'test_task_01'
+  end
 end
+#"タスクが作成日時の降順に並んでいるかのテスト" 
 # t = all(".task-item__title")¥
 # t == [
 #   {title: " "},

@@ -35,7 +35,11 @@
 ・$ git push heroku master コマンドでherokuにデプロイができる<br>
 ・DBは自動で作成されるがマイグレーションファイルは$heroku run rails db:migrateコマンドで手動で実行する。<br>
 ・$ rails assets:precompile RAILS_ENV=production コマンドにより事前にapp/assets以下をコンパイルしておく必要があ　  る。<br>
-
+#### heroku git hub連携手順
+・herokuのappページからdeployを選択。<br>
+・ページ下のgit hubアイコンをクリック。<br>
+・Connect to GitHubを押下しオーソライズする。<br>
+・リポジトリ名を入力する欄があるので記入してコネクト完了
 #### バージョン
 Rails 5.2.3<br>
 Rspec 3.8
