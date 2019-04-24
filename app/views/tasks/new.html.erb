@@ -1,3 +1,13 @@
+<%= form_for @task do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %>件のエラーがあります。</h2>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 <div class = "task_index">
     <%= form_with(model: @task, local: true) do |form| %>
       <div class="task_title">
@@ -8,7 +18,7 @@
       <div class="task_title">
         <%= form.label :content %>
         <br>
-        <%= form.text_field :content, class: 'form-control',id: 'new_content'%>
+        <%= form.text_area :content, class: 'form-control',id: 'new_content'%>
       </div>
       <div class="task_title">
       <%= form.label :deadline %>
