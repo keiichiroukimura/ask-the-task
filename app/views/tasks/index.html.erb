@@ -1,20 +1,30 @@
 <h1>タスク一覧</h1>
-<p id = "notice"><%= notice %></p>
+  <p id = "notice"><%= notice %></p>
 <table class="table table-hover">
-  <tr><td><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></td></tr>
+      <td><%= form_with(model: @task, method: :get, local: true, url: tasks_path) do |form| %>
+      <%= form.label :title, t('view.title') %><br>
+      <%= form.text_field :title, style: "width: 100px;" %>
+      </td>
+      <td style: "width: 100px;"><%= form.label :status, t('view.status') %><br>
+      <%= form.select :status, Task.statuses.keys, class: 'form-control' %>
+      
+      <%= form.submit 'search'%>
+      </td></tr>
+      <% end %>
+
   <tr>
   <th><%= t('view.date') %></th>
   <th><%= t('view.priority') %></th>
   <th><%= t('view.title') %></th>
   <th><%= t('view.content') %></th>
-  <th><%= t('view.deadline') %></th>
+  <th><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></th>
   <th><%= t('view.status') %></th>
   </tr>
 
   <% @tasks.each do |task| %>
     <br>
     <tr>
-    <td class="task-item__createdAt" ><%= task.created_at %></td>
+    <td class="task-item_createdAt" ><%= task.created_at %></td>
     <td><%= task.priority %></td>
     <td class="task-item__title" >
       <%= task.title %>

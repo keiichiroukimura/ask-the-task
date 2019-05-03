@@ -29,11 +29,12 @@
         <%= form.label :priority %>
         <br>
         <%= form.text_field :priority, class: 'form-control' %>
+        
       </div>
       <div class="task_title">
         <%= form.label :status %>
         <br>
-        <%= form.text_field :status, class: 'form-control' %>
+        <%= form.select :status,Task.statuses.keys, class: 'form-control'%>
       </div>
       <%= form.submit %>
     <% end %>

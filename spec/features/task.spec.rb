@@ -27,7 +27,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    Task.create!(id: '1', title: 'test_task_01', content: 'testtesttest',deadline: Date.today, priority: '1', status: 'a')
+    Task.create!(id: '1', title: 'test_task_01', content: 'testtesttest',deadline: Date.today, priority: '1', status: '未着手')
     
     visit task_path(1)
   
@@ -35,8 +35,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'testtesttest'
     expect(page).to have_content Date.today
     expect(page).to have_content '1'
-    expect(page).to have_content 'a'
-    save_and_open_page
+    expect(page).to have_content '未着手'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
@@ -45,7 +44,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     # タスクが作成日時の降順に並んでいるかのテスト
     #'終了期限でソートする'ボタンもテーブルの中に入っているので、'test_task_02'はテーブルの２番目の値になる。
     value = all("table tr")[2]
-    expect(value).to have_content 'test_task_02'
+    expect(value).to have_content 'test_task_01'
     # what: これは配列の順番を見るために作ったコード
     # how； 配列で取得するためにviewからだったらall modelからならallやwhere
     # why: 順番を確かめるためには一つの変数で複数の値を順番通りもてる配列を使わなきゃいけないから
@@ -60,10 +59,10 @@ RSpec.feature "タスク管理機能", type: :feature do
     
     visit tasks_path
     
-    click_on '終了期限でソートする'
+    click_on '締切期限'
     
     deadline = all("table tr")[2]
-    expect(deadline).to have_content "test_task_01"
+    expect(deadline).to have_content "test_task_02"
   end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 

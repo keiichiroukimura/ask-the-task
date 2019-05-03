@@ -2,11 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
-    if params[:sort_expired] != nil
-      @tasks = Task.order(deadline: "ASC")
-    else
-      @tasks = Task.order(created_at: "DESC")   
-    end
+    @tasks = Task.search_task(params[:title],params[:status],params[:sort_expired])
   end 
 
   def new
@@ -50,5 +46,4 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
-
 end
