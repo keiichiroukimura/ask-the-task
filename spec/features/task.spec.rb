@@ -62,7 +62,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on '締切期限'
     
     deadline = all("table tr")[2]
-    expect(deadline).to have_content "test_task_02"
+  expect(deadline).to have_content "test_task_02"
   end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 
