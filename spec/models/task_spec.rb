@@ -17,8 +17,4 @@ RSpec.describe Task, type: :model do
     task = Task.new(title: 'テスト成功', content: 'テスト成功')
     expect(task).to be_valid
   end
-
-  it "検索テスト" do
-    expect(Task.search_title(title)).to include(Task.find_by(title: "test_task_01"))  
-  end
 end
