@@ -22,8 +22,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     
     fill_in 'new_title', with: 'test_task_01'
     fill_in 'new_content', with: 'testtesttest'
-    
     click_on '登録する'
+
     expect(page).to have_content 'test_task_01'
     expect(page).to have_content 'testtesttest'
   end
@@ -45,7 +45,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     # タスクが作成日時の降順に並んでいるかのテスト
     #'終了期限でソートする'ボタンもテーブルの中に入っているので、'test_task_02'はテーブルの２番目の値になる。
-    value = all("table tr")[3]
+    value = all("table tr")[4]
     expect(value).to have_content 'test_task_02'
     # what: これは配列の順番を見るために作ったコード
     # how； 配列で取得するためにviewからだったらall modelからならallやwhere
@@ -60,37 +60,47 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "終了期限の降順に並び替えられたタスク一覧ページが出現するかのテスト" do
     
     visit tasks_path
-    
     click_on '締切期限'
     
     deadline = all("table tr")[2]
     expect(deadline).to have_content "test_task_02"
   end
-  scenario "検索機能テスト" do
-    visit tasks_path
-    
-    select '着手中', from: 'status'
-    
-    click_on 'search'
-    save_and_open_page
-    expect(all("table tr")[1]).to have_content "着手中"
-    expect(all("table tr")[2]).to have_content "着手中"
-    
-    fill_in 'task_title', with: 'test'
-    click_on 'search'
-    expect(all("table tr")[1]).to have_content "test"
-    expect(all("table tr")[2]).to have_content "test"
-    
-    select '着手中', from: 'status'
-    fill_in 'task_title', with: 'AAA'
-    click_on 'search'
-    expect(all("table tr")[1]).to have_content "AAA"
-    expect(all("table tr")[2]).to have_content "AAABBB"
+    # select '着手中', from: 'status'
+    # fill_in 'title', with: 'AAA'
+    # click_on 'search'
+    # expect(all("table tr")[1]).to have_content "AAA"
+    # expect(all("table tr")[2]).to have_content "AAABBB"
 
     # task_name = all("table tr")[1]
     # #trは上から２番め。thを挟んでいるから。
     # expect(task_name).to have_content "AAA"
     # fill_in 'search_status', with: 'test'
+  scenario "タスク名検索機能テスト" do
+    visit tasks_path
+    fill_in 'title' , with: 'test_task'
+    
+    click_on '検索'
+
+    save_and_open_page
+      expect(page).to have_content "test_task"
+     # expect(all("table tr")[2]).to have_content "test_task"
+  end
+  scenario "状態検索機能テスト" do
+    visit tasks_path
+
+    select '着手中', from: 'status'
+    click_on '検索'
+    expect(page).to have_content "着手中"
+    #expect(all("table tr")[2]).to have_content "着手中"
+  end
+  scenario "タスク名状態検索機能テスト" do
+    visit tasks_path
+
+    fill_in 'title' , with: 'test_task'
+    select '着手中', from: 'status'
+    click_on '検索'
+    expect(page).to have_content "着手中","test_task"
+    #expect(all("table tr")[2]).to have_content "着手中"
   end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 

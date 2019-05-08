@@ -13,7 +13,11 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+#require 'capybara/rspec'
 RSpec.configure do |config|
+  # config.before(:each, type: :feature) do
+  #   driven_by :selenium_chrome
+  # end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -93,4 +97,9 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  # Capybara.configure do |config|
+  #   config.run_server = false
+  #   config.default_driver = :selenium
+  #   config.app_host = 'http://0.0.0.0:3000/' # localhost(rails s)
+  # end
 end

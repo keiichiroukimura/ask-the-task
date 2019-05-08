@@ -3,12 +3,12 @@
 <table class="table table-hover">
       <td><%= form_with(model: @task, method: :get, local: true, url: tasks_path) do |form| %>
       <%= form.label :title, t('view.title') %><br>
-      <%= form.text_field :title, style: "width: 100px;" , id: 'task_title'%>
+      <%= form.text_field :title, style: "width: 100px;" ,id: :title_eeeeee %>
       </td>
       <td style: "width: 100px;"><%= form.label :status, t('view.status') %><br>
-      <%= form.select :status, Task.statuses.keys, class: 'form-control' %>
+      <%= form.select :status, Task.statuses.keys,class: 'form-control' %>
       
-      <%= form.submit 'search'%>
+      <%= form.submit '検索' %>
       </td></tr>
       <% end %>
 

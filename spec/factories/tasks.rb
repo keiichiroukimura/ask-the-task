@@ -3,6 +3,7 @@ FactoryBot.define do
     title { "test_task_01" }
     content { "testtesttest" }
     status { "着手中" }
+  
   end
   factory :second_task, class: Task do
     title { "test_task_02" }
