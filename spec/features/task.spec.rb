@@ -19,7 +19,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスク作成のテスト" do
 
     visit new_task_path
-    
+
     fill_in 'new_title', with: 'test_task_01'
     fill_in 'new_content', with: 'testtesttest'
     click_on '登録する'
@@ -65,42 +65,33 @@ RSpec.feature "タスク管理機能", type: :feature do
     deadline = all("table tr")[2]
     expect(deadline).to have_content "test_task_02"
   end
-    # select '着手中', from: 'status'
-    # fill_in 'title', with: 'AAA'
-    # click_on 'search'
-    # expect(all("table tr")[1]).to have_content "AAA"
-    # expect(all("table tr")[2]).to have_content "AAABBB"
-
-    # task_name = all("table tr")[1]
-    # #trは上から２番め。thを挟んでいるから。
-    # expect(task_name).to have_content "AAA"
-    # fill_in 'search_status', with: 'test'
   scenario "タスク名検索機能テスト" do
     visit tasks_path
-    fill_in 'title' , with: 'test_task'
-    
-    click_on '検索'
 
-    save_and_open_page
-      expect(page).to have_content "test_task"
-     # expect(all("table tr")[2]).to have_content "test_task"
+    fill_in 'title', with: 'test_task'
+
+    click_on '検索'
+    
+    expect(page).to have_content "test_task"
+    expect(all("table tr")[1]).to have_content "test_task"
+    expect(all("table tr")[2]).to have_content "test_task"
   end
   scenario "状態検索機能テスト" do
     visit tasks_path
 
     select '着手中', from: 'status'
     click_on '検索'
-    expect(page).to have_content "着手中"
-    #expect(all("table tr")[2]).to have_content "着手中"
+    expect(all("table tr")[1]).to have_content "着手中"
+    expect(all("table tr")[2]).to have_content "着手中"
   end
-  scenario "タスク名状態検索機能テスト" do
+  scenario "タスク名,状態検索機能テスト" do
     visit tasks_path
 
-    fill_in 'title' , with: 'test_task'
+    fill_in 'title' , with: 'AAA'
     select '着手中', from: 'status'
     click_on '検索'
-    expect(page).to have_content "着手中","test_task"
-    #expect(all("table tr")[2]).to have_content "着手中"
+    expect(all("table tr")[1]).to have_content "着手中","AAA"
+    expect(all("table tr")[2]).to have_content "着手中","AAA"
   end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 
