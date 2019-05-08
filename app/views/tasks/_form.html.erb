@@ -28,7 +28,7 @@
       <div class="task_title">
         <%= form.label :priority %>
         <br>
-        <%= form.text_field :priority, class: 'form-control' %>
+        <%= form.select :priority,Task.priorities.keys, class: 'form-control'%>
         
       </div>
       <div class="task_title">
