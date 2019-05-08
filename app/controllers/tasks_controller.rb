@@ -9,6 +9,8 @@ class TasksController < ApplicationController
       @tasks = Task.search_title(params[:title]) 
     elsif params[:status].present?
       @tasks = Task.search_status(params[:status])
+    elsif params[:sort_priority] == 'true'
+      @tasks = Task.sort_priority(params[:sort_priority])
     elsif params[:sort_expired] == 'true'
       @tasks = Task.sort_expired(params[:sort_expired])
     else

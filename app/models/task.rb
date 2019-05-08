@@ -10,6 +10,9 @@ class Task < ApplicationRecord
     return if status.blank?
     where(status: status)
   }
+  scope :sort_priority, ->(sort_priority) {
+    order(priority: "ASC" ) 
+  }
   scope :sort_expired, -> (sort_expired) { 
     order(deadline: "ASC") 
   }
@@ -27,7 +30,7 @@ class Task < ApplicationRecord
   #     order(created_at: "DESC") 
   #   end
   # end
-  
+  enum priority: {高: 0,中: 1, 低: 2 }
   enum status: {"": 0 ,未着手: 1, 着手中: 2, 完了: 3 }
 end
   
