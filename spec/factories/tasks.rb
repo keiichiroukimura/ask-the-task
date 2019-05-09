@@ -20,7 +20,7 @@ FactoryBot.define do
   end
   factory :forth_task, class: Task do
     title { "BBB" }
-    content { "samplesample" }
+    content { "testtesttest" }
     status { "未着手" }
   end
   factory :fifth_task, class: Task do

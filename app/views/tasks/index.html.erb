@@ -1,5 +1,7 @@
+
 <h1>タスク一覧</h1>
   <p id = "notice"><%= notice %></p>
+ 
     <%= form_with(model: @task, method: :get, local: true, url: tasks_path) do |form| %>
       <%= form.label :title, t('view.title') %><br>
       <%= form.text_field :title, style: "width: 100px;" %>
@@ -36,5 +38,7 @@
     <% end %>
   
 </table>
+  <br>
+  <%= paginate @tasks %>
   <br>
   <%= link_to t('view.registration'), new_task_path %>
