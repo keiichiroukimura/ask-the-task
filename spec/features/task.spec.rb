@@ -45,8 +45,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     # タスクが作成日時の降順に並んでいるかのテスト
     #'終了期限でソートする'ボタンもテーブルの中に入っているので、'test_task_02'はテーブルの２番目の値になる。
-    value = all("table tr")[4]
-    expect(value).to have_content 'test_task_02'
+    value = all("table tr")[1]
+    expect(value).to have_content 'AAABBB'
     # what: これは配列の順番を見るために作ったコード
     # how； 配列で取得するためにviewからだったらall modelからならallやwhere
     # why: 順番を確かめるためには一つの変数で複数の値を順番通りもてる配列を使わなきゃいけないから
@@ -100,6 +100,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(all("table tr")[1]).to have_content "高"
     expect(all("table tr")[2]).to have_content "中"
     expect(all("table tr")[3]).to have_content "低"
+  end
+  scenario "ページネーション機能テスト" do
+    visit tasks_path
+    click_on '2'
+    
+    expect(all("table tr")[1]).to have_content "test_task_02"
+    expect(all("table tr")[2]).to have_content "test_task_01"
   end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 

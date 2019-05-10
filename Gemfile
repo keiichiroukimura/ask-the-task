@@ -26,8 +26,8 @@ group :development, :test do
   gem "database_cleaner"
   gem "launchy"
   gem 'selenium-webdriver'
-
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'kaminari'
 end
 
 group :development do

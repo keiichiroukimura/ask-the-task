@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
+    PER = 3
   def index
+    
     if params[:title].present? && params[:status].present?
       @tasks = Task.search_title(params[:title])
                    .search_status(params[:status])
@@ -16,6 +17,7 @@ class TasksController < ApplicationController
     else
       @tasks = Task.order(created_at: "DESC")
     end 
+      @tasks = @tasks.page(params[:page]).per(PER) 
   end
 
   def new
