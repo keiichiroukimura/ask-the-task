@@ -26,7 +26,7 @@
     <% @tasks.each do |task| %>
       <br>
       <tr>
-      <td class="task-item_createdAt" ><%= task.created_at %></td>
+      <td class="task-item_createdAt" ><%= task.created_at.to_s(:published_on) %></td>
       <td><%= task.priority %></td>
       <td class="task-item__title" >
         <%= task.title %>
