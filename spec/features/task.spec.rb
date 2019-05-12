@@ -96,7 +96,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "優先順位に並んでいるかのテスト" do
     visit tasks_path
     click_on '優先度'
-    save_and_open_page
+    
     expect(all("table tr")[1]).to have_content "高"
     expect(all("table tr")[2]).to have_content "中"
     expect(all("table tr")[3]).to have_content "低"

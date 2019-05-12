@@ -1,6 +1,8 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
 .task_index {
   text-align: center;
 }
@@ -29,4 +31,12 @@ div#error_explanation {
 
 .show {
   text-align: center;
+}
+
+form {
+  margin-top: 50px;
+}
+
+.card {
+  margin-left: 150px;
 }

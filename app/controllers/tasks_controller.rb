@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
     PER = 3
   def index
-    
+
     if params[:title].present? && params[:status].present?
       @tasks = Task.search_title(params[:title])
                    .search_status(params[:status])
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to task_path(@task.id) , notice: 'タスクを作成'
+      redirect_to tasks_path(@task.id) , notice: 'タスクを作成'
     else
       render 'new'
     end
