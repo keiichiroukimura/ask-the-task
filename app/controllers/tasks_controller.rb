@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user,{only: [:edit, :update,:destroy,]}
     PER = 3
   def index
-
     if params[:title].present? && params[:status].present?
       @tasks = Task.search_title(params[:title])
                    .search_status(params[:status])
@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     else
       @tasks = Task.order(created_at: "DESC")
     end 
-      @tasks = @tasks.page(params[:page]).per(PER) 
+      @tasks = @tasks.my_tasks(current_user.id).page(params[:page]).per(PER) 
   end
 
   def new
@@ -29,6 +29,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path(@task.id) , notice: 'タスクを作成'
     else
@@ -40,6 +41,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task.user_id = current_user.id
     if @task.update(task_params)
       redirect_to tasks_path, notice: 'タスクを更新'
     else
@@ -55,10 +57,16 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :priority, :status)
+    params.require(:task).permit(:title, :content, :deadline, :priority, :status, :user_id)
   end
 
   def set_task
     @task = Task.find(params[:id])
   end
+
+  def ensure_correct_user
+      
+    
+      redirect_to tasks_path unless @task.user_id == current_user.id
+    end
 end
