@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
-      flash[:notice] = "だめよ〜"
       redirect_to tasks_path
     end
   end
