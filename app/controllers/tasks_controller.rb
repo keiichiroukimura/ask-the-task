@@ -3,21 +3,7 @@ class TasksController < ApplicationController
   before_action :ensure_correct_user,{only: [:edit, :update,:destroy,]}
     PER = 3
   def index
-    if params[:title].present? && params[:status].present?
-      @tasks = Task.search_title(params[:title])
-                   .search_status(params[:status])
-    elsif params[:title].present?  
-      @tasks = Task.search_title(params[:title]) 
-    elsif params[:status].present?
-      @tasks = Task.search_status(params[:status])
-    elsif params[:sort_priority] == 'true'
-      @tasks = Task.sort_priority(params[:sort_priority])
-    elsif params[:sort_expired] == 'true'
-      @tasks = Task.sort_expired(params[:sort_expired])
-    else
-      @tasks = Task.order(created_at: "DESC")
-    end 
-      @tasks = @tasks.my_tasks(current_user.id).page(params[:page]).per(PER) 
+    serch_and_sort
   end
 
   def new
@@ -64,9 +50,25 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def serch_and_sort
+    if params[:title].present? && params[:status].present?
+      @tasks = Task.search_title(params[:title])
+                   .search_status(params[:status])
+    elsif params[:title].present?
+      @tasks = Task.search_title(params[:title]) 
+    elsif params[:status].present?
+      @tasks = Task.search_status(params[:status])
+    elsif params[:sort_priority] == 'true'
+      @tasks = Task.sort_priority(params[:sort_priority])
+    elsif params[:sort_expired] == 'true'
+      @tasks = Task.sort_expired(params[:sort_expired])
+    else
+      @tasks = Task.order(created_at: "DESC")
+    end 
+      @tasks = @tasks.my_tasks(current_user.id).page(params[:page]).per(PER)  
+  end
+
   def ensure_correct_user
-      
-    
-      redirect_to tasks_path unless @task.user_id == current_user.id
-    end
+    redirect_to tasks_path unless @task.user_id == current_user.id
+  end
 end
