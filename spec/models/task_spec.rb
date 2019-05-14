@@ -13,8 +13,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "titleとcontentに内容が記載されていればバリデーションが通る" do
-    # ここに内容を記載する
-    task = Task.new(title: 'テスト成功', content: 'テスト成功')
+    user_a = FactoryBot.create(:user)
+    task = Task.new(title: 'テスト成功', content: 'テスト成功', user: user_a)
     expect(task).to be_valid
   end
 end

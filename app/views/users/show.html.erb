@@ -1,0 +1,15 @@
+<section id = "mypage">
+  <div class="form-group">
+    <div style="margin-right: 140px;"><%= "name" %></div>
+    <div class="well well-sm"><%= @user.name %></div>
+  </div>
+
+  <div class="form-group">
+    <div style="margin-right: 140px;"><%= "メールアドレス"%></div>
+    <div class="well well-sm">
+      <%= @user.email  %>
+    </div>
+  </div>
+  <%= link_to "タスク一覧", tasks_path  %>
+</section>
+
