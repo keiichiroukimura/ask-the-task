@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
-  before_action :ensure_correct_user, only: [:new, :show]
+  before_action :ensure_correct_user, only: [:show]
+  before_action :logged_in, only: [:new]
   def new
     @user = User.new
   end
@@ -27,6 +28,12 @@ class UsersController < ApplicationController
 
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
+      redirect_to tasks_path
+    end
+  end
+  
+  def logged_in
+    if logged_in?
       redirect_to tasks_path
     end
   end

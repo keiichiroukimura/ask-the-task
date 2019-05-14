@@ -17,7 +17,8 @@ class TasksController < ApplicationController
     else
       @tasks = Task.order(created_at: "DESC")
     end 
-      @tasks = @tasks.my_tasks(current_user.id).page(page_display).per(PER)
+      @tasks = @tasks.where(user_id: current_user.id).page(page_display).per(PER)
+      #@tasks = @tasks.my_tasks(current_user.id).page(page_display).per(PER)
       #serch_and_sort
   end
 

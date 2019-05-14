@@ -17,9 +17,9 @@ class Task < ApplicationRecord
     order(deadline: "ASC") 
   }
 
-  scope :my_tasks, -> (user_id) { 
-    where(user_id: user_id) 
-  }
+  # scope :my_tasks, -> (user_id) { 
+  #   where(user_id: user_id) 
+  # }
 
   enum priority: {高: 0,中: 1, 低: 2 }
   enum status: {"": 0 ,未着手: 1, 着手中: 2, 完了: 3 }
