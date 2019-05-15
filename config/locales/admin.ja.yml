@@ -1,0 +1,15 @@
+ja:
+  view:
+    admin: '管理者権限'
+    false: なし
+  activerecord:
+    models:
+      admin: '管理者権限'
+      user: ユーザ
+      email: メールアドレス
+      created_at: 作成日
+      updated_at: 更新日
+      tasks: タスク数
+    attributes:
+      user:
+        name: 名前
