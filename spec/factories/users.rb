@@ -3,6 +3,7 @@ FactoryBot.define do
     name { "ジミヘンドリクス" }
     email { "crybaby@email.com" }
     password { "111111" }
+    admin {true}
   end
   factory :second_user, class: User do
     name { "ポールマッカートニー" }
