@@ -64,7 +64,14 @@ RSpec.feature "ユーザー毎のタスク管理機能", type: :feature do
       click_on "Log in"
       click_on "管理画面"
       all('table tr')[1].click_link '削除'
-      save_and_open_page
       expect(page).to have_content '「ジミヘンドリクス」を削除しました。'
+      end
+      scenario "管理画面以外のログイン制御" do
+        visit new_session_path
+        fill_in 'session_email', with: 'poul@email.com'
+        fill_in 'session_password', with: '222222'
+        click_on "Log in"
+        expect(page).not_to have_content '管理画面'
+        save_and_open_page
       end
 end
