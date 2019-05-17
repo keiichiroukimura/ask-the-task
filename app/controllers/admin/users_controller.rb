@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :require_admin
   PER = 3
   def index
-    @users = User.all
+  @users = User.includes(:tasks)
   end
   
   def show 
