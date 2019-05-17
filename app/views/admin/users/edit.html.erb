@@ -1,0 +1,21 @@
+<h1>管理者登録</h1>
+
+<div class = "admin_submit">
+  <%= form_with(model:[:admin, @user], local: true) do |f| %>
+    <%= f.hidden_field :created_at %>
+    <%= f.hidden_field :uodated_at %>
+    <%= f.label :name %>
+    <%= f.text_field :name , class: 'form-control' %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control'%>
+    <%= f.label :管理者権限, class: 'form-check-label' %>
+    <%= f.check_box :admin, class: 'form-check-input' %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password ,class: 'form-control' %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation , class: 'form-control' %>
+    <p><%= f.submit "登録する", class: 'btn btn-default' %></p>
+  <% end %>
+  <%= link_to '一覧', admin_users_path ,class: "nav-link"%>
+</div>
