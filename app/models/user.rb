@@ -7,4 +7,13 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  after_destroy :ensure_an_admin_remains
+
+  private
+
+  def ensure_an_admin_remains
+    if User.where(admin: "true").count.zero?
+      raise "最後の管理者は削除できません！"
+    end
+  end
 end
