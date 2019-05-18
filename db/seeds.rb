@@ -25,3 +25,10 @@ User.create!(
   password: '111111',
   name: 'ジョージハリスン',
 )
+
+User.create!(
+  email: 'dylan@test.com',
+  password: '111111',
+  name: 'ボブディラン',
+  admin: 'true',
+)
