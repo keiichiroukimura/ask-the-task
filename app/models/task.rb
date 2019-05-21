@@ -1,7 +1,9 @@
 class Task < ApplicationRecord
   validates :title, presence: true
-  validates :content, presence: true
-  belongs_to :user
+  belongs_to :user, optional: true
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_labels, through: :favorites, source: :label
+  accepts_nested_attributes_for :favorite_labels
   scope :search_title, ->(title) {
     return if title.blank? 
     where("title like ?","%#{title}%")

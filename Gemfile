@@ -14,7 +14,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
 gem 'bcrypt', '3.1.11'
 group :development, :test do
-
+  
+  gem 'rails-erd'
   gem 'rails-i18n', '~> 5.1'
   gem 'faker'
   gem 'spring'

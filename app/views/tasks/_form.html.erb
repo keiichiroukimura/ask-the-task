@@ -36,6 +36,10 @@
         <br>
         <%= form.select :status,Task.statuses.keys, class: 'form-control'%>
       </div>
+        <% Label.all.each do |label|%>
+          <%= form.check_box :label_ids, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id]%>
+          <label style="background-color: aquamarine"><%= label.content %></label>
+        <% end %>
       <%= form.submit %>
     <% end %>
   <%= link_to t('view.back'), tasks_path ,class: "btn btn-default" %>

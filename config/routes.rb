@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :tasks 
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :show, :destroy]
+  resources :labels, only: [:new, :create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end
 
 

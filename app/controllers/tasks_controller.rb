@@ -23,15 +23,18 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new 
+    # @labels = @task.favorites.find_by(label_id: params[:id])
   end
 
   def show
   end
 
   def create
+    binding.pry
     @task = Task.new(task_params)
     @task.user_id = current_user.id
+    # @labels = @task.favorites.find_by(label_id: params[:id])
     if @task.save
       redirect_to tasks_path(@task.id) , notice: 'タスクを作成'
     else
@@ -59,7 +62,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :priority, :status, :user_id)
+    params.require(:task).permit(:title, :content, :deadline, :priority, :status, :user_id, label_ids:[])
   end
 
   def set_task
