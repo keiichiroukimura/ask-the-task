@@ -8,7 +8,7 @@ class LabelsController < ApplicationController
   def create
     @label = Label.new(label_params)
     if @label.save
-      redirect_to new_label_path(@label.id) , notice: 'ラベルを作成'
+      redirect_to new_label_path , notice: 'ラベルを作成'
     else
       render 'new'
     end

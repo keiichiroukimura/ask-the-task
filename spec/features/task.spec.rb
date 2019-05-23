@@ -8,17 +8,14 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
   scenario "タスク一覧のテスト" do
     visit new_session_path
-    
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
     expect(page).to have_content 'タスク一覧'
   end
-
   scenario "タスク作成のテスト" do
 
     visit new_session_path
-    
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
@@ -26,7 +23,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'new_title', with: 'test_task_01'
     fill_in 'new_content', with: 'testtesttest'
     click_on '登録する'
-
     expect(page).to have_content 'test_task_01'
     expect(page).to have_content 'testtesttest'
   end
@@ -53,7 +49,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-    
     # タスクが作成日時の降順に並んでいるかのテスト
     #'終了期限でソートする'ボタンもテーブルの中に入っているので、'test_task_02'はテーブルの２番目の値になる。
     # click_on "タスクを登録する"
@@ -78,9 +73,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-    
     click_on '締切期限'
-    
     deadline = all("table tr")[2]
     expect(deadline).to have_content "test_task_02"
   end
@@ -90,11 +83,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-
     fill_in 'title', with: 'test_task_01'
-
     click_on '検索'
-    
     expect(page).to have_content "test_task"
     expect(all("table tr")[1]).to_not have_content "test_task_02"
     # expect(all("table tr")[2]).to have_content "test_task"
@@ -105,7 +95,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-
     select '着手中', from: 'status'
     click_on '検索'
     expect(all("table tr")[1]).to_not have_content "未着手"
@@ -117,11 +106,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-
     fill_in 'title' , with: 'test_task_01'
     select '着手中', from: 'status'
     click_on '検索'
-    
     expect(all("table tr")[1]).to_not have_content "未着手","test_task_02"
     expect(all("table tr")[2]).to_not have_content "未着手","test_task_02"
     # expect(all("table tr")[2]).to have_content "着手中","AAA"
@@ -132,12 +119,51 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session_email', with: 'crybaby@email.com'
     fill_in 'session_password', with: '111111'
     click_on "Log in"
-
     click_on '優先度'
-    
     expect(all("table tr")[1]).to have_content "高"
     expect(all("table tr")[2]).to have_content "中"
   end
+  scenario "管理者ラベル作成" do
+    visit new_session_path
+    fill_in 'session_email', with: 'crybaby@email.com'
+    fill_in 'session_password', with: '111111'
+    click_on "Log in"
+    click_on "管理画面"
+    click_on "ラベル作成"
+    fill_in 'label_content', with: 'イベント'
+    click_on "登録する"
+    expect(page).to have_content "イベント"
+  end
+  scenario "タスクラベル添付機能テスト" do
+    visit new_session_path
+    fill_in 'session_email', with: 'crybaby@email.com'
+    fill_in 'session_password', with: '111111'
+    click_on "Log in"
+    click_on "管理画面"
+    click_on "ラベル作成"
+    fill_in 'label_content', with: 'イベント'
+
+    click_on "登録する"
+    click_on "My page"
+    click_on "タスク一覧"
+    click_on "タスクを登録する"
+    fill_in 'new_title', with: 'test_task_01'
+    fill_in 'new_content', with: 'testtesttest'
+    check 'task[label_ids][]'
+    click_on '登録する'
+    save_and_open_page
+    expect(all("table tr")[1]).to have_content "イベント"
+    # expect(page).to have_content 'testtesttest'
+    # visit new_session_path
+    # fill_in 'session_email', with: 'crybaby@email.com'
+    # fill_in 'session_password', with: '111111'
+    # click_on "Log in"
+    # click_on "管理画面"
+    # click_on "ラベル作成"
+    # fill_in 'label_content', with: 'イベント'
+    # click_on "登録する"
+    # expect(page).to have_content "イベント"
+    end
 end
 #"タスクが作成日時の降順に並んでいるかのテスト" 
 # t = all(".task-item__title")¥
