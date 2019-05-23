@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   validates :title, presence: true
+  validates :content, presence: true
   belongs_to :user, optional: true
   has_many :favorites, dependent: :destroy
   has_many :favorite_labels, through: :favorites, source: :label

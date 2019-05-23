@@ -64,7 +64,7 @@ RSpec.feature "ユーザー毎のタスク管理機能", type: :feature do
       click_on "Log in"
       click_on "管理画面"
       all('table tr')[1].click_link '削除'
-      expect(page).to have_content '「ジミヘンドリクス」を削除しました。'
+      expect(page).to have_content '「最後の管理者は削除できません！」'
       end
       scenario "管理画面以外のログイン制御" do
         visit new_session_path
