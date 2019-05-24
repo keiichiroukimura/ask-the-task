@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'kaminari'
 gem 'rails_12factor', group: :production
 ruby '2.6.2'
 gem 'rails', '~> 5.2.2'
@@ -29,7 +30,6 @@ group :development, :test do
   gem "launchy"
   gem 'selenium-webdriver'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'kaminari'
 end
 
 group :development do
