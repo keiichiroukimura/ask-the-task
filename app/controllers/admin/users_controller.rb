@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  #before_action :require_admin
+  before_action :require_admin
   PER = 3
   def index
   @users = User.includes(:tasks)
