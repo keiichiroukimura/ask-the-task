@@ -14,11 +14,6 @@ class Task < ApplicationRecord
     where(status: status)
   }
 
-  # scope :search_label, ->(label_id) {
-  #   return if label_id.blank?
-  #   where(content: label_id)
-  # }
-  
   scope :sort_priority, ->(sort_priority) {
     order(priority: "ASC" ) 
   }
