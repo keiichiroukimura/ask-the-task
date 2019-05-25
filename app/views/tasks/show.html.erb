@@ -1,5 +1,9 @@
-<<div class = "task_show">
+<div class = "task_show">
   <h1>タスク内容</h1>
+  <p><%= 'ラベル名:' %><br>
+  <% @task.favorite_labels.each do |a| %>
+    <%= a.content%>
+  <% end %></p>
   <p><%= t('view.title') %>:<br>
   <%= @task.title %></p>
   <p><%= t('view.content') %>:<br>

@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_labels, only: [:index, :new, :edit, :create]
   before_action :ensure_correct_user,{only: [:edit, :update,:destroy]}
     PER = 3
   def index
@@ -24,14 +25,13 @@ class TasksController < ApplicationController
     elsif sort_expired_true 
       @tasks = Task.sort_expired(included_sort_expired)
     else
-      @tasks = Task.order(created_at: "DESC")
+      @tasks = Task.all.order(created_at: "DESC")
     end 
       @tasks = @tasks.where(user_id: current_user.id).page(page_display).per(PER) 
   end
   
   def new
     @task = Task.new 
-    # @labels = @task.favorites.find_by(label_id: params[:id])
   end
 
   def show
@@ -39,17 +39,15 @@ class TasksController < ApplicationController
   
   def create
     @task = current_user.tasks.build(task_params)
-    @labels = params[:task][:label_ids]
-    @favorite = @task.favorites
     if @task.save
-      if @labels
-      i = 0
-        while i < @labels.length  do
-          @favorite.create(label_id: @labels[i])
-          i += 1
-        end
-      end
-      redirect_to tasks_path , notice: 'タスクを作成'
+      # if @labels
+      # i = 0
+      #   while i < @labels.length  do
+      #     @favorite.create(label_id: @labels[i])
+      #     i += 1
+      #   end
+      # end
+      redirect_to tasks_path, notice: 'タスクを作成'
     else
       render 'new'
     end
@@ -59,12 +57,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.user_id = current_user.id
-    if @task.update(task_params)
-      redirect_to tasks_path, notice: 'タスクを更新'
-    else
-      render 'new'
-    end
+      if @task.update(task_params)
+        redirect_to tasks_path, notice: 'タスクを更新'
+      else
+        render 'edit'
+      end
   end
 
   def destroy
@@ -75,11 +72,15 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :priority, :status, :user_id )
+    params.require(:task).permit(:title, :content, :deadline, :priority, :status, :user_id, label_ids: [])
   end
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_labels
+    @labels = Label.all
   end
   
   def title_exists? 

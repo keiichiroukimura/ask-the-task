@@ -29,9 +29,9 @@
       <th><%= t('view.status') %></th>
     </tr>
     <% @tasks.each do |task| %>
-      <br>
+      <br> 
       <tr>
-      <td><% task.favorite_labels.each do |a| %>
+      <td><% task.labels.each do |a| %>
         <%= a.content%>
       <% end %></td>
       <td class="task-item_createdAt" ><%= task.created_at.to_s(:published_on) %></td>

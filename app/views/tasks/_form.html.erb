@@ -1,15 +1,5 @@
-<%= form_for @task do |form| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @task.errors.count %>件のエラーがあります。</h2>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
 <div class = "task_index">
-    <%= form_with(model: @task, local: true) do |form| %>
+    <%= form_with(model: task, local: true) do |form| %>
       <div class="task_title">
         <%= form.label :title %>
         <br>
@@ -29,17 +19,27 @@
         <%= form.label :priority %>
         <br>
         <%= form.select :priority,Task.priorities.keys, class: 'form-control'%>
-        
       </div>
       <div class="task_title">
         <%= form.label :status %>
         <br>
         <%= form.select :status,Task.statuses.keys, class: 'form-control'%>
       </div>
-        <% Label.all.each do |label|%>
-          <%= form.check_box :label_ids, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id]%>
-          <label style="background-color: aquamarine"><%= label.content %></label>
-        <% end %>
+
+    <% @labels.each do |label| %>
+      <div class="field">
+        <%= form.check_box :label_ids,
+          { multiple: true,
+          checked: label[:checked],
+          disabled: label[:disabled],
+          include_hidden: false },
+          label[:id]
+        %>
+        <label style="background-color: aquamarine">
+          <%= label.content %>
+        </label>
+      </div>
+    <% end %>
       <%= form.submit %>
     <% end %>
   <%= link_to t('view.back'), tasks_path ,class: "btn btn-default" %>

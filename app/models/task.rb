@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   validates :content, presence: true
   belongs_to :user, optional: true
   has_many :favorites, dependent: :destroy
-  has_many :favorite_labels, through: :favorites, source: :label
+  has_many :labels, through: :favorites, source: :label
   
   scope :search_title, ->(title) {
     return if title.blank? 
