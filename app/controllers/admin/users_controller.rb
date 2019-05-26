@@ -28,22 +28,22 @@ class Admin::UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to admin_users_path, notice: "「#{@user.name}」を更新しました。"
-    else
-      render 'new'
+    begin
+      @user.update(user_params)
+      redirect_to admin_users_path, notice: "「#{@user.name}」を更新しまいした。" 
+    rescue Exception => e
+      redirect_to admin_users_path,notice: "「#{e.message}」"
     end
-  end
+  end 
 
   def destroy
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
       begin
         @user.destroy
         redirect_to admin_users_path, notice: "「#{@user.name}」を削除しました。" 
       rescue Exception => e
         redirect_to admin_users_path,notice: "「#{e.message}」"
       end
-      admin_users_path
   end
 
   private

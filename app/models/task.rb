@@ -1,7 +1,10 @@
 class Task < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
-  belongs_to :user
+  belongs_to :user, optional: true
+  has_many :favorites, dependent: :destroy
+  has_many :labels, through: :favorites, source: :label
+  
   scope :search_title, ->(title) {
     return if title.blank? 
     where("title like ?","%#{title}%")
@@ -10,6 +13,7 @@ class Task < ApplicationRecord
     return if status.blank?
     where(status: status)
   }
+
   scope :sort_priority, ->(sort_priority) {
     order(priority: "ASC" ) 
   }
@@ -22,7 +26,7 @@ class Task < ApplicationRecord
   # }
 
   enum priority: {高: 0,中: 1, 低: 2 }
-  enum status: {"": 0 ,未着手: 1, 着手中: 2, 完了: 3 }
+  enum status: {未着手: 0, 着手中: 1, 完了: 2 }
   
   # scope :search_task, -> (title,status,sort_expired) do
   #   if title.present? && status.present? 

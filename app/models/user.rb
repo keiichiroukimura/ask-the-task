@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   after_destroy :ensure_an_admin_remains
-
+  after_update :ensure_an_admin_remains
+  
   private
 
   def ensure_an_admin_remains

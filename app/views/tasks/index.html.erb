@@ -8,23 +8,32 @@
         <br>
         <%= form.label :status, t('view.status') %>
         <br>
-        <%= form.select :status, Task.statuses.keys,class: 'form-control' %>
+        <%= form.select :status, Task.statuses.keys,include_blank: true,class: 'form-control' %>
+        <br>
+        <%= form.label :label, 'ラベル名' %>
+        <% Label.all.each_with_index do |label, i| %>
+          <%= i + 1 %><%=':'%><label style="background-color: aquamarine"><%= label.content %></label>
+        <% end %>
+        <br>
+        <%= form.select :label_id, Label.all.map {|t| t.content} ,include_blank: true, class: 'form-control' %>
         <%= form.submit t('view.search'), class: "btn-default"%>
         <% end %>
-    
   <table class="table table-hover">
     <tr>
-    <th><%= t('view.date') %></th>
-    <th><%= link_to t('view.priority') , tasks_path(sort_priority: "true")%></th>
-    <th><%= t('view.title') %></th>
-    <th><%= t('view.content') %></th>
-    <th><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></th>
-    <th><%= t('view.status') %></th>
+      <th><%= 'ラベル' %></th>
+      <th><%= t('view.date') %></th>
+      <th><%= link_to t('view.priority') , tasks_path(sort_priority: "true")%></th>
+      <th><%= t('view.title') %></th>
+      <th><%= t('view.content') %></th>
+      <th><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></th>
+      <th><%= t('view.status') %></th>
     </tr>
-
     <% @tasks.each do |task| %>
-      <br>
+      <br> 
       <tr>
+      <td><% task.labels.each do |a| %>
+        <%= a.content%>
+      <% end %></td>
       <td class="task-item_createdAt" ><%= task.created_at.to_s(:published_on) %></td>
       <td><%= task.priority %></td>
       <td class="task-item__title" >
